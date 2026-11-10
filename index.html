@@ -54,7 +54,7 @@ input.inl{border:0;border-bottom:1px solid var(--ink);font:inherit;font-weight:6
 <div class="folder"><div class="tab">About Dossier</div><p>Dossier files the company clients and events hidden in a restaurant's inbox, remembers their yearly occasions and suggests who to reach out to next. It works next to the reservation system you already use, not instead of it.</p></div>
 <div class="folder"><div class="tab">What we state</div><p><b>We, the restaurant named above, state that:</b></p><ol><li>We run private or company events and today keep track of inquiries in email, notes or spreadsheets.</li><li>We would like to <b>pilot Dossier</b> for 2–3 months, using real inquiries from our own inbox.</li><li>If the pilot works for us, we would consider a paid plan in the range of <b>$<input class="inl" type="text" inputmode="numeric" size="6" aria-label="Price per month"> per month</b>.</li><li>We will give honest feedback after the pilot, good or bad.</li></ol></div>
 <div class="folder"><div class="tab">Terms</div><p class="muted">This letter is a statement of interest only. It does not oblige either side to buy, sell, pay or sign anything. Either side can stop at any time.</p><label class="opt"><input type="checkbox"><span>We agree that Dossier may name our restaurant (and show our logo) as a pilot restaurant in presentations.</span></label></div>
-<div class="sign"><div><canvas id="sig"></canvas><label>Signature · <button type="button" id="clr">clear</button></label></div><div><div class="line"></div><label>For Dossier</label></div></div>
+<div class="sign"><div><canvas id="sig"></canvas><label>Signature · <button type="button" id="clr">clear</button></label></div></div>
 </section><script>
 const c=document.getElementById('sig'),x=c.getContext('2d');let d=false;
 function fit(){const r=c.getBoundingClientRect(),k=window.devicePixelRatio||1;c.width=r.width*k;c.height=r.height*k;x.scale(k,k);x.lineWidth=2;x.lineCap='round';x.strokeStyle='#222'}
@@ -123,9 +123,9 @@ async function build(){
     return para(c,'We agree that Dossier may name our restaurant (and show our logo) as a pilot restaurant in presentations.',x+Math.round(9*MM),yy,w-Math.round(9*MM),22,INK,dry)});
   // signatures
   const ly=H-Math.round(26*MM),gap=Math.round(10*MM),sw2=(IW-gap)/2;
-  c.strokeStyle=INK;c.lineWidth=2;[0,1].forEach(k=>{const x=M+k*(sw2+gap);c.beginPath();c.moveTo(x,ly);c.lineTo(x+sw2,ly);c.stroke()});
+  c.strokeStyle=INK;c.lineWidth=2;[0].forEach(k=>{const x=M+k*(sw2+gap);c.beginPath();c.moveTo(x,ly);c.lineTo(x+sw2,ly);c.stroke()});
   const sg=document.getElementById('sig');try{const sr=sg.getBoundingClientRect(),ratio=sr.width/sr.height,hh=Math.min(Math.round(16*MM),sw2/ratio);c.drawImage(sg,M,ly-hh-4,hh*ratio,hh)}catch(e){}
-  c.font='400 18px '+SANS;c.fillStyle=GREY;c.fillText('Signature',M,ly+26);c.fillText('For Dossier',M+sw2+gap,ly+26);
+  c.font='400 18px '+SANS;c.fillStyle=GREY;c.fillText('Signature',M,ly+26);
   return cv}
 function pdfFrom(cv){
   const jpg=Uint8Array.from(atob(cv.toDataURL('image/jpeg',0.92).split(',')[1]),ch=>ch.charCodeAt(0));
